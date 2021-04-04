@@ -13,7 +13,7 @@ class HotelPostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class HotelPostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => "required|min:10",
+            "rating" => "required|numeric|min:0|max:5",
+            "reputation" => "required|numeric|min:0|max:1000",
+            "price" => "required|numeric",
+            "availability" => "required|numeric"
         ];
     }
 }

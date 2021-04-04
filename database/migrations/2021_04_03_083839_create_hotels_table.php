@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModelTable extends Migration
+class CreateHotelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateModelTable extends Migration
      */
     public function up()
     {
-        Schema::create('model', function (Blueprint $table) {
+        Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger("rating");
             $table->string('category');
-            $table->string('image');
+            $table->string('image')->default(url("/hotel.png"));;
             $table->string('reputationBadge');
             $table->unsignedBigInteger("reputation");
             $table->unsignedBigInteger("price");
@@ -34,6 +34,6 @@ class CreateModelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model');
+        Schema::dropIfExists('hotels');
     }
 }

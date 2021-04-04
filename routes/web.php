@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::delete('/delete-hotel', 'HotelController@destroy');
+Route::post('/add-hotel', '\HotelController@addHotel')->name('addHotel');
+Route::get('/all-hotels', 'HotelController@allHotels')->name('allHotels');
+Route::get('/hotel', 'HotelController@getHotel')->name('getHotel');
+Route::post("/change-hotel/{id}","HotelController@changeHotel");
