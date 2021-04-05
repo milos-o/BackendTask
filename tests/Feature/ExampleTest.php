@@ -24,22 +24,6 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testHotelPostRequest(){
-        $this->withoutExceptionHandling();
-
-        $response = $this->post('/add-hotel', [
-            'name' => 'pORTO NOVIIII',
-            "rating" => 4,
-            "category" => "hotel",
-            "image" => "http://backend.test/hotel.png",
-            "reputation" => 12,
-            "price" => 222,
-            "availability" => 12
-        ]);
-
-        $this->assertCount(1, Hotel::all());
-    }
-
     public function testLocationPostRequest(){
         $this->withoutExceptionHandling();
 

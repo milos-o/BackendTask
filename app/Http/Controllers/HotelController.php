@@ -30,7 +30,7 @@ class HotelController extends Controller
         ],200);
     }
 
-    public function addHotel(Request $request){
+    public function addHotel(HotelPostRequest $request){
 
         $path = url("/hotel.png");
 
