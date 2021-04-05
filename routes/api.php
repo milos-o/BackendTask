@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::delete('/delete-hotel', 'App\Http\Controllers\HotelController@destroy');
+Route::delete('/delete-hotel/{id}', 'App\Http\Controllers\HotelController@destroy');
 Route::post('/add-hotel', 'App\Http\Controllers\HotelController@addHotel')->name('addHotel');
 Route::get('/all-hotels', 'App\Http\Controllers\HotelController@allHotels')->name('allHotels');
 Route::get('/hotel', 'App\Http\Controllers\HotelController@getHotel')->name('getHotel');
@@ -32,7 +32,7 @@ Route::get('/hotel-availability/{availability}', 'App\Http\Controllers\HotelCont
 
 Route::post("/change-hotel/{id}","App\Http\Controllers\HotelController@changeHotel");
 
-Route::delete('/delete-location', 'App\Http\Controllers\LocationController@destroy');
+Route::delete('/delete-location/{id}', 'App\Http\Controllers\LocationController@destroy');
 Route::post('/add-location', 'App\Http\Controllers\LocationController@addLocation');
 Route::get('/all-locations', 'App\Http\Controllers\LocationController@allLocations');
 Route::get('/location', 'App\Http\Controllers\LocationController@getLocation');

@@ -30,7 +30,15 @@ class HotelController extends Controller
         ],200);
     }
 
-    public function addHotel(HotelPostRequest $request){
+    public function addHotel(Request $request){
+
+        $path = url("/hotel.png");
+
+        if($request->hasFile('image')){
+            $path = $request->image->store('images', 'public');
+        }
+       
+        
 
        $name = $request['name'];
        $contains = Str::contains($name, ['Book', 'Offer', 'Free', 'Website']);
@@ -54,12 +62,14 @@ class HotelController extends Controller
             return response()->json(["validation" => "failed"], 422);
         }
 
+       
         Hotel::create([
             'name' => $name,
             'rating' => $request['rating'],
             'category' => $category,
             'reputationBadge' => $reputationBadge,
             'reputation' => $reputation,
+            'image' => $path,
             'price' => $request['price'],
             'availability' => $request['availability']
         ]);
@@ -69,6 +79,15 @@ class HotelController extends Controller
 
     public function changeHotel(HotelPostRequest $request){
         $hotel = Hotel::findOrFail($request->id);
+
+
+        $path = $hotel->image;
+
+        if($request->hasFile('image')){
+            $path = $request->image->store('images', 'public');
+        }
+       
+
         $name = $request['name'];
         $contains = Str::contains($name, ['Book', 'Offer', 'Free', 'Website']);
  
@@ -97,6 +116,7 @@ class HotelController extends Controller
         $hotel->reputationBadge = $reputationBadge;
         $hotel->reputation = $request->reputation;
         $hotel->price = $request->price;
+        $hotel->image = $path;
         $hotel->availability = $request->availability;
         $hotel->save();
         return response()->json(["status" => "success"],200);
